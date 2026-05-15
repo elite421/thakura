@@ -1,66 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [nextUrl, setNextUrl] = useState('');
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-
-    const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/thakurainfratechprivatelimited@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: "New Enquiry from Thakura Infratech Website",
-          _template: "table"
-        })
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        event.currentTarget.reset();
-      } else {
-        alert("Something went wrong. Please try again later.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    setNextUrl(window.location.href);
+  }, []);
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form 
+      className="contact-form" 
+      action="https://formsubmit.co/thakurainfratechprivatelimited@gmail.com" 
+      method="POST"
+    >
+      <input type="hidden" name="_next" value={nextUrl} />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_subject" value="New Enquiry from Thakura Infratech Website" />
+      <input type="hidden" name="_template" value="table" />
+
       <div className="form-row">
         <label>
           Full Name
-          <input required name="name" placeholder="Your name" disabled={loading} />
+          <input required name="name" placeholder="Your name" />
         </label>
         <label>
           Phone Number
-          <input required name="phone" placeholder="+91" disabled={loading} />
+          <input required name="phone" placeholder="+91" />
         </label>
       </div>
       <label>
         Email Address
-        <input type="email" name="email" placeholder="name@example.com" disabled={loading} />
+        <input type="email" name="email" placeholder="name@example.com" />
       </label>
       <label>
         Requirement
-        <select name="requirement" defaultValue="Construction" disabled={loading}>
+        <select name="requirement" defaultValue="Construction">
           <option>Construction</option>
           <option>Villa Society / Plotting</option>
           <option>Manufacturing</option>
@@ -70,13 +47,12 @@ export function ContactForm() {
       </label>
       <label>
         Message
-        <textarea required name="message" rows={5} placeholder="Tell us about your project or business requirement" disabled={loading} />
+        <textarea required name="message" rows={5} placeholder="Tell us about your project or business requirement" />
       </label>
-      <button type="submit" disabled={loading}>
+      <button type="submit">
         <Send size={18} />
-        {loading ? 'Sending...' : 'Send Enquiry'}
+        Send Enquiry
       </button>
-      {submitted && <p className="form-success">Thank you. Your enquiry has been sent successfully.</p>}
     </form>
   );
 }
