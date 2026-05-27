@@ -776,3 +776,216 @@ textarea {
     flex-direction: column;
   }
 }
+
+/* Floating Video Styles */
+.floating-video-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 220px;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(16, 24, 32, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: #000;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.floating-video-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(16, 24, 32, 0.35);
+  border-color: var(--brick);
+}
+
+.floating-video-wrapper.expanded {
+  width: 360px;
+}
+
+.floating-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.floating-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(16, 24, 32, 0.8) 0%, rgba(16, 24, 32, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.floating-video-wrapper:hover .floating-video-overlay {
+  opacity: 1;
+}
+
+.floating-video-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 24, 32, 0.6);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.floating-video-actions {
+  display: flex;
+  gap: 5px;
+  pointer-events: auto;
+}
+
+.floating-video-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(16, 24, 32, 0.65);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-video-btn:hover {
+  background: var(--brick);
+  transform: scale(1.1);
+}
+
+.floating-video-btn.close-btn:hover {
+  background: #ff3b30;
+}
+
+.floating-video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to top, rgba(16, 24, 32, 0.8) 0%, rgba(16, 24, 32, 0) 100%);
+  color: #fff;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.floating-video-wrapper:hover .floating-video-info {
+  opacity: 1;
+}
+
+.info-title {
+  font-weight: 800;
+}
+
+.info-sub {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .floating-video-wrapper {
+    bottom: 16px;
+    right: 16px;
+    width: 140px;
+    border-width: 1.5px;
+  }
+  .floating-video-wrapper.expanded {
+    width: 240px;
+  }
+  .floating-video-overlay,
+  .floating-video-info {
+    opacity: 1; /* Always show controls on mobile since there is no hover */
+  }
+}
+
+/* Contact Form Enhancements */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

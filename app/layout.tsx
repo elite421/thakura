@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { FloatingVideo } from '@/components/FloatingVideo';
 
 export const metadata: Metadata = {
   title: 'Thakura Infratech | Villa Society, Plotting, Construction & Trading',
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <Header />
         <main>{children}</main>
+        <FloatingVideo />
         <Footer />
       </body>
     </html>

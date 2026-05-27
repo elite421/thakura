@@ -38,6 +38,7 @@ export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Services', href: '/services' },
+  { label: 'Sites', href: '/sites' },
   { label: 'Products', href: '/products' },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -140,3 +141,71 @@ export const projectImage =
 
 export const constructionImage =
   'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80';
+
+export interface SiteItem {
+  name: string;
+  location: string;
+  details?: string;
+  highlight?: string;
+}
+
+export const kanpurSites: SiteItem[] = [
+  {
+    name: 'Sanket Nagar Site',
+    location: 'Sanket Nagar, Kanpur',
+    details: 'Arazi No. 661',
+    highlight: 'Premium residential plotting layout with direct road access.'
+  },
+  {
+    name: 'Alu Chaubagpur Site',
+    location: 'Alu Chaubagpur, Kanpur',
+    details: 'Arazi No. 119',
+    highlight: 'Strategic land development and residential plotting near Mandhana.'
+  },
+  {
+    name: 'Mandhana Site',
+    location: 'Mandhana, Kanpur',
+    details: 'Near Blue World Theme Park',
+    highlight: 'Prime growth corridor with high investment potential.'
+  },
+  {
+    name: 'Kalyanpur Site',
+    location: 'Kalyanpur, Kanpur',
+    details: 'Near Gulliver House',
+    highlight: 'Excellent connectivity in an established residential hub.'
+  }
+];
+
+export const lucknowSites: SiteItem[] = [
+  {
+    name: 'Malhaur Site',
+    location: 'Malhaur, Lucknow',
+    details: 'Near Baba Saheb / Khandeshwar Mahadev Temple',
+    highlight: 'Rapidly developing area with close proximity to Gomti Nagar.'
+  },
+  {
+    name: 'Mohanlalganj Site',
+    location: 'Utrahtia Village, Lucknow',
+    details: 'Utrahtia Local Area',
+    highlight: 'High accessibility and infrastructure readiness.'
+  },
+  {
+    name: 'Vipul Khand Site',
+    location: 'Vipul Khand, Gomti Nagar, Lucknow',
+    details: 'Arazi Land',
+    highlight: 'Premium residential zone in the heart of Gomti Nagar.'
+  }
+];
+
+export const upcomingProjects = [
+  {
+    name: 'Resident Town House',
+    location: 'Amar Shaheed Path Side, Lucknow',
+    highway: 'NH @ Mohanlalganj to Lucknow Road (Bypass 4-10 Km)',
+    details: 'Villa, Plots and Row Houses / Pent Houses',
+    status: 'Coming Soon',
+    description: 'A prestigious coming-soon township offering premium residential villas, plots, and row houses with state-of-the-art infrastructure, wide internal roads, and premium amenities near the bypass.',
+    videoSrc: '/Tharkula limted.mp4'
+  }
+];
+
